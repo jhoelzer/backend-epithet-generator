@@ -1,4 +1,4 @@
-from backend_epithet_generator.app import app
+from .app import app
 
 
 def test_app_one_random():

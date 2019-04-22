@@ -1,33 +1,37 @@
-__author__ = "jhoelzer"
+__author__ = 'jhoelzer'
 
 from flask import Flask, jsonify
 from dotenv import load_dotenv
-from backend_epithet_generator.helpers import EpithetGenerator, Vocabulary
-from random import randint
-import os
+from .helpers import EpithetGenerator, Vocabulary
+import random
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route('/')
 def generate_epithets():
-    result = EpithetGenerator().generate_one()
-    return jsonify({"epithets": result})
+    e = EpithetGenerator()
+    result = e.one_random()
+    return jsonify(result)
 
 
-@app.route("/vocabulary")
+@app.route('/vocabulary')
 def vocabulary():
-    result = Vocabulary.read_json("resources/data.json")
-    return jsonify({"vocabulary": result})
+    v = Vocabulary()
+    result = v.read_json('resources/data.json')
+    return jsonify(result)
 
 
-@app.route("/epithets/<int:quantity>")
-def generate_multiple_epithets(quantity=1):
-    result = EpithetGenerator().generate_multi(quantity)
-    return jsonify({"epithets": result})
+@app.route('/epithets/<int:quantity>')
+def generate_multiple_epithets(quantity):
+    e = EpithetGenerator()
+    result = e.multi_random(quantity)
+    return jsonify(result)
 
 
 @app.route('/random')
 def generate_random_number_epithets():
-    random_epithets = EpithetGenerator().quantity(randint(1, 51))
-    return jsonify(random_epithets)
+    e = EpithetGenerator()
+    random_num = random.randint(1, 51)
+    result = e.multi_random(random_num)
+    return jsonify(result)
