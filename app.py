@@ -1,7 +1,6 @@
 __author__ = 'jhoelzer'
 
 from flask import Flask, jsonify
-from dotenv import load_dotenv
 from .helpers import EpithetGenerator, Vocabulary
 import random
 
