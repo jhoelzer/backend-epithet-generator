@@ -9,7 +9,6 @@ This is in Python3
 __author__ = 'jhoelzer'
 
 from flask import Flask, jsonify
-import os
 
 app = Flask(__name__)
 
