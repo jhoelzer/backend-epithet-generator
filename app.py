@@ -1,21 +1,26 @@
-__author__ = "jhoelzer"
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+
+This is in Python3
+"""
+
+__author__ = 'jhoelzer'
 
 from flask import Flask, jsonify
-from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
 
-load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
-
-@app.route("/")
+@app.route('/')
 def generate_epithets():
-    epithets = {"epithets": []}
+    epithets = {'epithets': []}
     return jsonify(epithets)
 
 
-@app.route("/vocabulary")
+@app.route('/vocabulary')
 def vocabulary():
-    vocabulary = {"vocabulary": {}}
+    vocabulary = {'vocabulary': {}}
     return jsonify(vocabulary)
